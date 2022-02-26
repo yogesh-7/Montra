@@ -1,14 +1,18 @@
 package com.dev_yogesh.montra.ui.fragment.HomeFragment
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.dev_yogesh.montra.R
 import com.dev_yogesh.montra.databinding.FragmentHomeBinding
 import com.dev_yogesh.montra.ui.MainActivity
+import com.dev_yogesh.montra.utils.Dialogs.selectMonthDialog
+import com.dev_yogesh.montra.utils.comon.DialogMonthCallback
 import com.dev_yogesh.montra.utils.getCurrentMonth
 import java.util.*
 
@@ -18,6 +22,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
 
     private val binding get() = _binding!!
+    private var selectedMonth = Calendar.getInstance().get(Calendar.MONTH)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,10 +33,9 @@ class HomeFragment : Fragment() {
         return  binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         setData()
         initListener()
     }
@@ -42,7 +46,6 @@ class HomeFragment : Fragment() {
         tvExpense.text = getString(R.string.rs_symbol).plus("1200")
         tvAccountBalance.text = getString(R.string.rs_symbol).plus("9400")
 
-
     }
     private fun initListener()= with(binding){
         ivSpendFrequency.setOnClickListener {
@@ -50,6 +53,14 @@ class HomeFragment : Fragment() {
         }
         labelSpendFrequency.setOnClickListener {
             graphVisibility()
+        }
+        tvCurrentMonthSelected.setOnClickListener {
+            selectMonthDialog(requireContext(),selectedMonth,object : DialogMonthCallback{
+                override fun selectedMonth(month: String, monthInt: Int) {
+                    tvCurrentMonthSelected.text= month
+                    selectedMonth = monthInt
+                }
+            })
         }
 
     }

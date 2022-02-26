@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/label_select_month"
+        style="@style/regular_1Bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/select_a_month"
+        android:padding="@dimen/default_text_view_padding"
+        android:textAlignment="textStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/month_chip_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:singleLine="false"
+        app:chipSpacing="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_select_month"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/january_chip"
+            style="@style/monthChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/january" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/february_chip"
+            style="@style/monthChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/february" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/march_chip"
+            style="@style/monthChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/march" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/april_chip"
+            style="@style/monthChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/april" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/may_chip"
+            style="@style/monthChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/may" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/june_chip"
+            style="@style/monthChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/june" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/july_chip"
+            style="@style/monthChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/july" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/august_chip"
+            style="@style/monthChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/august" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/september_chip"
+            style="@style/monthChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/september" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/october_chip"
+            style="@style/monthChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/october" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/november_chip"
+            style="@style/monthChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/november" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/december_chip"
+            style="@style/monthChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/december" />
+    </com.google.android.material.chip.ChipGroup>
+</androidx.constraintlayout.widget.ConstraintLayout>

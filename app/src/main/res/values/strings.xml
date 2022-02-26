@@ -20,6 +20,7 @@
 
     <string name="spend_frequency">Spend Frequency</string>
     <string name="shopping">Shopping</string>
+    <string name="select_a_month">Select a Month :</string>
 
     <string name="transaction">Transaction</string>
     <string name="see_all">See All</string>
@@ -31,6 +32,18 @@
     <string name="week">Week</string>
     <string name="month">Month</string>
     <string name="year">Year</string>
+    <string name="november">November</string>
+    <string name="december">December</string>
+    <string name="october">October</string>
+    <string name="august">August</string>
+    <string name="september">September</string>
+    <string name="july">July</string>
+    <string name="june">June</string>
+    <string name="may">May</string>
+    <string name="april">April</string>
+    <string name="march">March</string>
+    <string name="february">February</string>
+    <string name="january">January</string>
 
 
 </resources>

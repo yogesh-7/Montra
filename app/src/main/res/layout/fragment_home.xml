@@ -450,7 +450,7 @@
                 android:id="@+id/choice_chip_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:singleLine="false"
+                app:singleLine="true"
                 app:chipSpacing="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
