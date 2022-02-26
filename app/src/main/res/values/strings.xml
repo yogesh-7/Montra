@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Montra</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="skip">Skip</string>
+    <string name="onboard_1_title">Gain total control of your money</string>
+    <string name="onboard_1_desc">Become your own money manager and make every rupee count</string>
+
+    <string name="onboard_2_title">Know where your money goes</string>
+    <string name="onboard_2_desc">Track your transaction easily,with categories and financial report</string>
+    <string name="onboard_3_title">Planning ahead</string>
+    <string name="onboard_3_desc">Setup your budget for each category so you in control</string>
+    <string name="let_s_start">Let\'s Start</string>
+
+
+    <string name="account_balance">Account Balance</string>
+    <string name="income">Income</string>
+    <string name="expense">Expense</string>
+    <string name="rs_symbol">₹</string>
+
+    <string name="spend_frequency">Spend Frequency</string>
+    <string name="shopping">Shopping</string>
+
+    <string name="transaction">Transaction</string>
+    <string name="see_all">See All</string>
+    <string name="recent_transaction">Recent Transaction</string>
+    <string name="home">Home</string>
+    <string name="budget">Budget</string>
+    <string name="profile">Profile</string>
+    <string name="today">Today</string>
+    <string name="week">Week</string>
+    <string name="month">Month</string>
+    <string name="year">Year</string>
+
+
+</resources>

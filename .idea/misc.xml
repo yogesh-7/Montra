@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../.gradle/caches/transforms-3/a0af3f7c3df7004c703b07f34d8e66e2/transformed/material-1.5.0/res/drawable/ic_mtrl_chip_checked_black.xml" value="0.195" />
+        <entry key="app/src/main/res/drawable/background_chip_color.xml" value="0.195" />
+        <entry key="app/src/main/res/drawable/indicator_default_onboarding.xml" value="0.1775" />
+        <entry key="app/src/main/res/drawable/indicator_selected_onboarding.xml" value="0.1775" />
+        <entry key="app/src/main/res/drawable/indicator_selector_onboarding.xml" value="0.1775" />
+        <entry key="app/src/main/res/drawable/rv_item_recent_transaction.xml" value="0.134" />
+        <entry key="app/src/main/res/drawable/selector_btn_light_voilet_borders.xml" value="0.1775" />
+        <entry key="app/src/main/res/drawable/selector_btn_white_borders.xml" value="0.1775" />
+        <entry key="app/src/main/res/drawable/shape_rect_rounded_transparent_light_voilet_border_unselect.xml" value="0.1775" />
+        <entry key="app/src/main/res/drawable/splash_screen.xml" value="0.1775" />
+        <entry key="app/src/main/res/font/quicksand.xml" value="0.29635416666666664" />
+        <entry key="app/src/main/res/font/quicksand_bold.xml" value="0.29635416666666664" />
+        <entry key="app/src/main/res/font/quicksand_medium.xml" value="0.29635416666666664" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_on_boarding.xml" value="0.26614583333333336" />
+        <entry key="app/src/main/res/layout/item_onboarding.xml" value="0.26614583333333336" />
+        <entry key="app/src/main/res/layout/rv_item_recent_transaction.xml" value="0.20842895507812498" />
+        <entry key="app/src/main/res/menu/menu_home.xml" value="0.25427350427350426" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <style name="AppTheme.Button" parent="Widget.MaterialComponents.Button">
+        <item name="fontFamily">@font/quicksand_bold</item>
+        <item name="android:fontFamily">@font/quicksand_bold</item>
+    </style>
+
+    <style name="TextAppearance.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="fontFamily">@font/quicksand_medium</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="BottomNavigationView.Active" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">11sp</item>
+    </style>
+
+
+    <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">11sp</item>
+    </style>
+    <style name="homeChipsStyle" parent="@style/Widget.MaterialComponents.Chip.Choice">
+        <item name="android:textSize">11sp</item>
+        <item name="chipBackgroundColor">@color/background_chip_color</item>
+        <item name="android:textColor">@color/chip_text_color</item>
+        <item name="android:minWidth">75dp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+
+    <style name="TextViewButtonWhiteBorderLarge">
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center</item>
+        <item name="fontFamily">@font/quicksand</item>
+        <item name="android:textColor">@color/text_colour_light</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:background">@drawable/selector_btn_white_borders</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="Theme.Fab_Bottom_app_bar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary"> @color/violet_100</item>
+        <item name="colorPrimaryVariant"> @color/violet_100</item>
+        <item name="colorOnPrimary">@color/light_100</item>
+    </style>
+</resources>

@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_colour_light">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.04" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.12" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.40" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.18" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.360" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glH2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.96" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.04" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.16" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.84" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.96" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glVCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.45" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glV6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.55" />
+
+
+    <!-- layout starts from here-->
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/ic_back_home"
+        app:layout_constraintBottom_toTopOf="@id/glH4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Top bar starts here-->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_account_pic"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:innerRadius="0dp"
+        android:shape="ring"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/circle_card_view_radius"
+        app:layout_constraintBottom_toTopOf="@id/glH3"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@id/glV3"
+        app:layout_constraintStart_toStartOf="@id/glV1"
+        app:layout_constraintTop_toTopOf="@id/glH1"
+        app:strokeColor="@color/violet_100"
+        app:strokeWidth="@dimen/default_card_view_stroke_width"
+        tools:ignore="ContentDescription">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/default_margin_small"
+            android:innerRadius="0dp"
+            android:shape="ring"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/circle_card_view_radius"
+            app:layout_constraintDimensionRatio="1:1"
+            tools:ignore="ContentDescription">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_account_pic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toTopOf="@id/glH3"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="@id/glV2"
+                app:layout_constraintStart_toStartOf="@id/glV4"
+                app:layout_constraintTop_toTopOf="@id/glH1"
+                tools:ignore="ContentDescription"
+                tools:src="@tools:sample/avatars" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvCurrentMonthSelected"
+        style="@style/regular_2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/shape_rect_rounded_transparent_light_voilet_border_unselect"
+        android:gravity="center"
+        android:padding="@dimen/default_text_view_padding"
+        app:drawableStartCompat="@drawable/ic_arrow_down_2"
+        app:drawableTint="@color/violet_100"
+        app:layout_constraintBottom_toTopOf="@id/glH3"
+        app:layout_constraintEnd_toStartOf="@+id/glV4"
+        app:layout_constraintStart_toStartOf="@+id/glV3"
+        app:layout_constraintTop_toTopOf="@id/glH1"
+        tools:text="December" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/cv_notification"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="@dimen/default_icon_padding"
+        android:src="@drawable/ic_notification"
+        app:layout_constraintBottom_toTopOf="@id/glH3"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@id/glV2"
+        app:layout_constraintStart_toStartOf="@id/glV4"
+        app:layout_constraintTop_toTopOf="@id/glH1"
+        app:tint="@color/violet_100"
+        tools:ignore="ContentDescription" />
+
+
+    <!-- Top bar ends here-->
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/label_account_balance"
+        style="@style/regular_2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:padding="@dimen/default_text_view_padding"
+        android:text="@string/account_balance"
+        android:textColor="@color/text_colour_light25"
+        app:layout_constraintBottom_toTopOf="@id/glH5"
+        app:layout_constraintEnd_toStartOf="@+id/glV4"
+        app:layout_constraintStart_toStartOf="@+id/glV3"
+        app:layout_constraintTop_toTopOf="@id/glH3" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_account_balance"
+        style="@style/title_1_bold"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:padding="@dimen/default_text_view_padding"
+        app:layout_constraintBottom_toTopOf="@id/glH6"
+        app:layout_constraintEnd_toStartOf="@+id/glV4"
+        app:layout_constraintStart_toStartOf="@+id/glV3"
+        app:layout_constraintTop_toTopOf="@id/glH5"
+        tools:text="₹45000" />
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/btn_income"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:innerRadius="0dp"
+        app:cardBackgroundColor="@color/green_100"
+        app:cardCornerRadius="@dimen/default_card_view_radius_1"
+        app:layout_constraintBottom_toTopOf="@id/glH7"
+        app:layout_constraintEnd_toEndOf="@id/glV5"
+        app:layout_constraintStart_toStartOf="@id/glV1"
+        app:layout_constraintTop_toTopOf="@id/glH6"
+        app:strokeColor="@color/green_40"
+        app:strokeWidth="@dimen/default_card_view_stroke_width"
+        tools:ignore="ContentDescription">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/default_icon_padding_large">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cv_income"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="@dimen/default_margin_small"
+                android:layout_marginStart="4dp"
+                android:innerRadius="0dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/circle_card_view_radius"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_income"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:tint="@color/green_100"
+                    tools:ignore="ContentDescription" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/label_income"
+                style="@style/title_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/default_text_view_padding"
+                android:text="@string/income"
+                android:textColor="@color/light_80"
+                app:layout_constraintBottom_toTopOf="@+id/tv_income"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cv_income"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_income"
+                style="@style/title_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/default_text_view_padding"
+                android:textColor="@color/light_80"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cv_income"
+                app:layout_constraintTop_toBottomOf="@id/label_income"
+                tools:text="₹5000" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/btn_expense"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:innerRadius="0dp"
+        app:cardBackgroundColor="@color/red_100"
+        app:cardCornerRadius="@dimen/default_card_view_radius_1"
+        app:layout_constraintBottom_toTopOf="@id/glH7"
+        app:layout_constraintEnd_toEndOf="@id/glV2"
+        app:layout_constraintStart_toStartOf="@id/glV6"
+        app:layout_constraintTop_toTopOf="@id/glH6"
+        app:strokeColor="@color/green_40"
+        app:strokeWidth="@dimen/default_card_view_stroke_width"
+        tools:ignore="ContentDescription">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/default_icon_padding_large">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cv_expense"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="@dimen/default_margin_small"
+                android:layout_marginStart="4dp"
+                android:innerRadius="0dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/circle_card_view_radius"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_expense"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:tint="@color/red_100"
+                    tools:ignore="ContentDescription" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/label_expense"
+                style="@style/title_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/default_text_view_padding"
+                android:text="@string/expense"
+                android:textColor="@color/light_80"
+                app:layout_constraintBottom_toTopOf="@+id/tv_expense"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cv_expense"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_expense"
+                style="@style/title_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/default_text_view_padding"
+                android:textColor="@color/light_80"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/cv_expense"
+                app:layout_constraintTop_toBottomOf="@id/label_expense"
+                tools:text="₹1200" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/glH2"
+        app:layout_constraintEnd_toEndOf="@id/glV2"
+        app:layout_constraintStart_toStartOf="@id/glV1"
+        app:layout_constraintTop_toTopOf="@+id/glH4">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            >
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/label_spend_frequency"
+                style="@style/regular_1Bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/spend_frequency"
+                android:padding="@dimen/default_text_view_padding"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toStartOf="@+id/iv_spend_frequency"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                 />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_spend_frequency"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="@dimen/default_icon_padding"
+                android:rotation="180"
+                android:src="@drawable/ic_arrow_down_2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintTop_toTopOf="@id/label_spend_frequency"
+                app:layout_constraintBottom_toBottomOf="@+id/label_spend_frequency"
+                app:tint="@color/violet_100"
+                tools:ignore="ContentDescription" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_graph"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:padding="@dimen/default_icon_padding"
+                android:visibility="gone"
+                android:src="@drawable/ic_graph"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_spend_frequency"
+                tools:ignore="ContentDescription" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/choice_chip_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:singleLine="false"
+                app:chipSpacing="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_graph"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/today_chip"
+                    style="@style/homeChipsStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/today" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/week_chip"
+                    style="@style/homeChipsStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/week" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/month_chip"
+                    style="@style/homeChipsStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/month" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/year_chip"
+                    style="@style/homeChipsStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/year" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/label_recent_transaction"
+                style="@style/regular_1Bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="textStart"
+                android:layout_marginTop="6dp"
+                android:text="@string/recent_transaction"
+                android:padding="@dimen/default_text_view_padding"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/choice_chip_group"
+                app:layout_constraintEnd_toStartOf="@+id/cv_see_all_transaction"
+                />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cv_see_all_transaction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="18dp"
+                app:cardBackgroundColor="@color/violet_20"
+                app:layout_constraintStart_toEndOf="@+id/label_recent_transaction"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/label_recent_transaction"
+                app:layout_constraintBottom_toBottomOf="@+id/label_recent_transaction"
+                >
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_see_all_transaction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/see_all"
+                    android:padding="8dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:textColor="@color/violet_100"
+                    android:textAlignment="textEnd"
+
+                    />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_recent_transaction"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:itemCount="9"
+                tools:listitem="@layout/rv_item_recent_transaction"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_recent_transaction"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

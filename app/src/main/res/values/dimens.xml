@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<resources>
+    <!--THIS IS A GENERATED RESOURCE FILE. SEE:
+      - app/src/scripts/python/generate_scaled_dimens_resources.py
+      - app/src/main/res/values/dimens.xml
+    FOR BASE VALUES-->
+
+
+    <dimen name="default_icon_padding">8dp</dimen>
+    <dimen name="default_icon_padding_small">2dp</dimen>
+    <dimen name="default_icon_padding_medium">4dp</dimen>
+    <dimen name="default_icon_padding_large">12dp</dimen>
+    <dimen name="default_icon_padding_extra_large">16dp</dimen>
+
+    <dimen name="default_text_view_padding">8dp</dimen>
+
+    <dimen name="default_card_view_stroke_width">1dp</dimen>
+    <dimen name="default_card_view_radius_1">24dp</dimen>
+    <dimen name="circle_card_view_radius">180dp</dimen>
+
+
+
+    <dimen name="default_margin_small">3dp</dimen>
+
+
+
+
+    <dimen name="textSizeTitleX">64sp</dimen>
+    <dimen name="textSizeTitle1">32sp</dimen>
+    <dimen name="textSizeTitle2">24sp</dimen>
+    <dimen name="textSizeTitle3">18sp</dimen>
+    <dimen name="textSizeRegular1">16sp</dimen>
+    <dimen name="textSizeRegular2">16sp</dimen>
+    <dimen name="textSizeRegular3">14sp</dimen>
+    <dimen name="textSizeSmall">13sp</dimen>
+    <dimen name="textSizeTiny">12sp</dimen>
+
+
+    <dimen name="btn_height">48dp</dimen>
+    <dimen name="depend_btn_corner_radius">24dp</dimen>
+
+</resources>
