@@ -25,5 +25,55 @@
         android:name="com.dev_yogesh.montra.ui.fragment.HomeFragment.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home"
-        />
+        >
+        <action
+            android:id="@+id/action_homeFragment_to_budgetFragment"
+            app:destination="@id/budgetFragment"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/slide_down"
+            app:popEnterAnim="@anim/slide_up"
+            app:popExitAnim="@anim/slide_down"/>
+        <action
+            android:id="@+id/action_homeFragment_to_transactionFragment"
+            app:destination="@id/transactionFragment"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/slide_down"
+            app:popEnterAnim="@anim/slide_up"
+            app:popExitAnim="@anim/slide_down"/>
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/slide_down"
+            app:popEnterAnim="@anim/slide_up"
+            app:popExitAnim="@anim/slide_down"/>
+        <action
+            android:id="@+id/action_homeFragment_to_expenseFragment"
+            app:destination="@id/expenseFragment"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/slide_down"
+            app:popEnterAnim="@anim/slide_up"
+            app:popExitAnim="@anim/slide_down"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.dev_yogesh.montra.ui.fragment.ProfileFragment.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/budgetFragment"
+        android:name="com.dev_yogesh.montra.ui.fragment.BudgetFragment.BudgetFragment"
+        android:label="fragment_budget"
+        tools:layout="@layout/fragment_budget" />
+    <fragment
+        android:id="@+id/transactionFragment"
+        android:name="com.dev_yogesh.montra.ui.fragment.TransactionFragment.TransactionFragment"
+        android:label="fragment_transaction"
+        tools:layout="@layout/fragment_transaction" />
+    <fragment
+        android:id="@+id/expenseFragment"
+        android:name="com.dev_yogesh.montra.ui.fragment.ExpenseFragment.ExpenseFragment"
+        android:label="fragment_expense"
+        tools:layout="@layout/fragment_expense" />
 </navigation>

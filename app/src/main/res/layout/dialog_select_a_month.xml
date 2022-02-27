@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:text="@string/select_a_month"
         android:padding="@dimen/default_text_view_padding"
+        android:visibility="gone"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

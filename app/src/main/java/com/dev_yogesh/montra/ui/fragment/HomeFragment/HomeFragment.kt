@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.DatePicker
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.dev_yogesh.montra.R
 import com.dev_yogesh.montra.databinding.FragmentHomeBinding
 import com.dev_yogesh.montra.ui.MainActivity
@@ -20,7 +21,6 @@ import java.util.*
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-
     private val binding get() = _binding!!
     private var selectedMonth = Calendar.getInstance().get(Calendar.MONTH)
 
@@ -61,6 +61,9 @@ class HomeFragment : Fragment() {
                     selectedMonth = monthInt
                 }
             })
+        }
+        btnExpense.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToExpenseFragment())
         }
 
     }

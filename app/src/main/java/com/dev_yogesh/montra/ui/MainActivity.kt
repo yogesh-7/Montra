@@ -27,24 +27,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE) //will hide the title
         supportActionBar?.hide() // hide the title bar
-        /* this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-             WindowManager.LayoutParams.FLAG_FULLSCREEN) //enable full screen
- */
         changeStatusBarColor(R.color.light_100, this)
         changeStatusBarTextColor(this)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        //setContentView(R.layout.activity_main)
 
 
-        //makeStatusBarTransparent()
-        this
-            .supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fl_container_on_boarding, OnBoardingFragment.getInstance())
-            .commit()
+        navigationBottomBarSetup()
 
+    }
+
+    private fun navigationBottomBarSetup()= with(binding){
+        bottomNavigationView.background = null
+        bottomNavigationView.menu.getItem(2).isEnabled = false
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -55,12 +51,12 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.onBoardingFragment,
                 -> {
-                    binding.bottomNavigationView.isVisible = false
+                    bottomNavigationView.isVisible = false
                     hideBottomNav(false)
                 }
                 R.id.homeFragment,
                 -> {
-                    binding.bottomNavigationView.isVisible = true
+                    bottomNavigationView.isVisible = true
                     hideBottomNav(true)
                 }
                 else -> {
@@ -69,8 +65,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.bottomNavigationView.setupWithNavController(navController)
-        NavigationUI.setupWithNavController(binding.bottomNavigationView, navController)
+        bottomNavigationView.setupWithNavController(navController)
+        NavigationUI.setupWithNavController(bottomNavigationView, navController)
+
 
 
     }

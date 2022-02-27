@@ -44,6 +44,23 @@
     <string name="march">March</string>
     <string name="february">February</string>
     <string name="january">January</string>
+    <string name="how_much">How much?</string>
+    <string name="_0">0</string>
+    <string name="category">Category</string>
+    <string name="when">When</string>
+    <string name="description">Description</string>
+    <string name="add_attachment">Add Attachment</string>
+    <string name="continue_">Continue</string>
+    <string name="miscellaneous">Miscellaneous</string>
+    <string name="entertainment">Entertainment</string>
+    <string name="personal_spending">Personal Spending</string>
+    <string name="saving_amp_debtsinsurance"><![CDATA[Saving & Debt Insurance]]></string>
+    <string name="healthcare">Healthcare</string>
+    <string name="insurance">Insurance</string>
+    <string name="utilities">Utilities</string>
+    <string name="transportation">Transportation</string>
+    <string name="food">Food</string>
+    <string name="housing">Housing</string>
 
 
 </resources>
