@@ -61,6 +61,16 @@
     <string name="transportation">Transportation</string>
     <string name="food">Food</string>
     <string name="housing">Housing</string>
+    <string name="document">Document</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+
+    <string name="permissions_required_for_this_feature_msg">It Looks like you have turned off permissions required for this feature. It can be enabled under Application Settings</string>
+    <string name="cancel">Cancel</string>
+    <string name="go_to_settings_caps">GO TO SETTINGS</string>
+
+
+
 
 
 </resources>

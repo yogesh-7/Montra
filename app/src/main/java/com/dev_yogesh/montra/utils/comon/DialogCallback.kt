@@ -9,3 +9,4 @@ interface DialogMonthCallback {
 interface DialogTransactionTypeCallback {
     fun selectedType(type: String,typeInt: Int,drawable: Drawable)
 }
+
