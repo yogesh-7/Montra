@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/red_100"
-    tools:context=".ui.fragment.ExpenseFragment.ExpenseFragment">
+    android:background="@color/green_100"
+    >
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glH1"
@@ -85,13 +85,13 @@
         tools:ignore="ContentDescription" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/label_expense"
+        android:id="@+id/label_income"
         style="@style/title_2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
         android:padding="@dimen/default_text_view_padding"
-        android:text="@string/expense"
+        android:text="@string/income"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@id/glH3"
         app:layout_constraintEnd_toStartOf="@+id/glV4"
@@ -108,13 +108,13 @@
         android:textAlignment="textStart"
         android:textColor="@color/light_80"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/label_expense_amount"
+        app:layout_constraintBottom_toTopOf="@id/label_income_amount"
         app:layout_constraintEnd_toStartOf="@+id/glV2"
         app:layout_constraintStart_toStartOf="@+id/glV1"
         app:layout_constraintTop_toTopOf="@id/glH4" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/label_expense_amount"
+        android:id="@+id/label_income_amount"
         style="@style/title_1_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -123,16 +123,16 @@
         android:textAlignment="textStart"
         android:textColor="@color/light_80"
         app:layout_constraintBottom_toTopOf="@id/glH5"
-        app:layout_constraintEnd_toStartOf="@+id/et_expense_amount"
+        app:layout_constraintEnd_toStartOf="@+id/et_income_amount"
         app:layout_constraintStart_toStartOf="@+id/glV1"
         app:layout_constraintTop_toBottomOf="@id/label_how_much" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_expense_amount"
+        android:id="@+id/et_income_amount"
         style="@style/title_1_bold"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/red_100"
+        android:background="@color/green_100"
         android:gravity="start"
         android:inputType="number"
         android:maxLength="6"
@@ -140,10 +140,10 @@
         tools:text="@string/_0"
         android:textAlignment="textStart"
         android:textColor="@color/light_80"
-        app:layout_constraintBottom_toBottomOf="@id/label_expense_amount"
+        app:layout_constraintBottom_toBottomOf="@id/label_income_amount"
         app:layout_constraintEnd_toStartOf="@+id/glV2"
-        app:layout_constraintStart_toEndOf="@+id/label_expense_amount"
-        app:layout_constraintTop_toTopOf="@id/label_expense_amount" />
+        app:layout_constraintStart_toEndOf="@+id/label_income_amount"
+        app:layout_constraintTop_toTopOf="@id/label_income_amount" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
@@ -214,7 +214,7 @@
             app:layout_constraintGuide_percent="0.96" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_expense_category"
+            android:id="@+id/tv_income_category"
             style="@style/regular_2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -223,14 +223,14 @@
             android:hint="@string/category"
             android:padding="@dimen/default_text_view_padding_large"
             android:textAlignment="textStart"
-            app:drawableTint="@color/red_100"
+            app:drawableTint="@color/green_100"
             app:layout_constraintBottom_toBottomOf="@+id/glH7"
             app:layout_constraintEnd_toStartOf="@+id/glV6"
             app:layout_constraintStart_toStartOf="@+id/glV5"
             app:layout_constraintTop_toTopOf="@id/glH6" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tv_expense_description"
+            android:id="@+id/tv_income_description"
             style="@style/regular_2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -246,7 +246,7 @@
             app:layout_constraintTop_toTopOf="@id/glH7" />
 
         <RelativeLayout
-            android:id="@+id/rl_expense_add_attachment"
+            android:id="@+id/rl_income_add_attachment"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/shape_rect_rounded_transparent_light_voilet_dotted_border"
@@ -256,7 +256,7 @@
             app:layout_constraintTop_toTopOf="@id/glH8">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_expense_add_attachment"
+                android:id="@+id/tv_income_add_attachment"
                 style="@style/regular_2"
                 tools:visibility="gone"
                 android:layout_width="wrap_content"
@@ -268,7 +268,7 @@
                 app:drawableTint="@color/dark_50" />
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/iv_expense_attachment"
+                android:id="@+id/iv_income_attachment"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 app:layout_constraintDimensionRatio="1:1"
@@ -280,15 +280,15 @@
                 />
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/iv_edit_expense_attachment"
+                android:id="@+id/iv_edit_income_attachment"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 app:layout_constraintDimensionRatio="1:1"
                 android:src="@drawable/ic_edit"
                 android:visibility="gone"
                 tools:visibility="visible"
-                app:tint="@color/red_100"
-                android:layout_toEndOf="@+id/iv_expense_attachment"
+                app:tint="@color/green_100"
+                android:layout_toEndOf="@+id/iv_income_attachment"
                 android:layout_centerInParent="true"
                 />
 
@@ -297,7 +297,7 @@
 
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_expense_date"
+            android:id="@+id/tv_income_date"
             style="@style/regular_2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -310,8 +310,8 @@
             app:layout_constraintEnd_toStartOf="@+id/glV6"
             app:layout_constraintStart_toStartOf="@+id/glV5"
             app:layout_constraintTop_toTopOf="@id/glH9" />
-        
-        
+
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_continue"
             android:layout_width="0dp"

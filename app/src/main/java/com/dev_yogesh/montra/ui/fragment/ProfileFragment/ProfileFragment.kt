@@ -5,24 +5,28 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.dev_yogesh.montra.R
+import com.dev_yogesh.montra.databinding.FragmentIncomeBinding
 import com.dev_yogesh.montra.databinding.FragmentProfileBinding
 import com.dev_yogesh.montra.databinding.FragmentTransactionBinding
+import com.dev_yogesh.montra.ui.comon.BaseFragment
 import com.dev_yogesh.montra.ui.fragment.TransactionFragment.TransactionFragment
+import com.dev_yogesh.montra.ui.viewModel.TransactionViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 
-class ProfileFragment : Fragment() {
-    private var _binding: FragmentProfileBinding? = null
-    private val binding get() = _binding!!
+@AndroidEntryPoint
+class ProfileFragment : BaseFragment<FragmentProfileBinding, TransactionViewModel>() {
 
-    override fun onCreateView(
+    override val viewModel: TransactionViewModel by activityViewModels()
+
+    override fun getViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentProfileBinding.inflate(inflater, container, false)
-        return  binding.root
-    }
+        container: ViewGroup?
+    )= FragmentProfileBinding.inflate(inflater, container, false)
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -39,10 +43,7 @@ class ProfileFragment : Fragment() {
 
 
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+
 
 
     companion object {

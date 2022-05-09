@@ -41,7 +41,7 @@
         <item name="android:textSize">16sp</item>
         <item name="chipBackgroundColor">@color/month_chip_background_color</item>
         <item name="android:textColor">@color/month_chip_text_color</item>
-        <item name="android:minWidth">124dp</item>
+        <item name="android:minWidth">132dp</item>
         <item name="android:textAlignment">center</item>
     </style>
 

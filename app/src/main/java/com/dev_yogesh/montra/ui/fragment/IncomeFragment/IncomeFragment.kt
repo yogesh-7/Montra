@@ -1,4 +1,4 @@
-package com.dev_yogesh.montra.ui.fragment.ExpenseFragment
+package com.dev_yogesh.montra.ui.fragment.IncomeFragment
 
 import android.Manifest
 import android.app.Activity
@@ -11,27 +11,26 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.dev_yogesh.montra.R
 import com.dev_yogesh.montra.databinding.DialogBottomSheetAddFileBinding
-import com.dev_yogesh.montra.databinding.FragmentBudgetBinding
-import com.dev_yogesh.montra.databinding.FragmentExpenseBinding
+import com.dev_yogesh.montra.databinding.FragmentHomeBinding
+import com.dev_yogesh.montra.databinding.FragmentIncomeBinding
 import com.dev_yogesh.montra.ui.comon.BaseFragment
 import com.dev_yogesh.montra.ui.viewModel.TransactionViewModel
-import com.dev_yogesh.montra.utils.Dialogs.selectTransactionTypeDialog
+import com.dev_yogesh.montra.utils.Dialogs
 import com.dev_yogesh.montra.utils.comon.DialogTransactionTypeCallback
-import com.dev_yogesh.montra.utils.comon.ImageUtils.getBitmapFromUri
-import com.dev_yogesh.montra.utils.comon.ImageUtils.saveImageToInternalStorage
+import com.dev_yogesh.montra.utils.comon.ImageUtils
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.karumi.dexter.Dexter
@@ -47,18 +46,19 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 @AndroidEntryPoint
-class ExpenseFragment : BaseFragment<FragmentExpenseBinding, TransactionViewModel>() {
+class IncomeFragment : BaseFragment<FragmentIncomeBinding, TransactionViewModel>() {
 
-
-
-    override val viewModel: TransactionViewModel by activityViewModels()
     private var previousSelectedType = 7
 
     lateinit var file: File
 
+    override val viewModel: TransactionViewModel by activityViewModels()
 
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    )= FragmentIncomeBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -71,23 +71,23 @@ class ExpenseFragment : BaseFragment<FragmentExpenseBinding, TransactionViewMode
     }
 
     private fun initListener() = with(binding) {
-        etExpenseAmount.requestFocus()
+        etIncomeAmount.requestFocus()
 
         ivBack.setOnClickListener {
             findNavController().popBackStack()
         }
 
-        tvExpenseCategory.setOnClickListener {
+        tvIncomeCategory.setOnClickListener {
             openCategoryDialog()
         }
-        rlExpenseAddAttachment.setOnClickListener {
+        rlIncomeAddAttachment.setOnClickListener {
             openFileBottomSheet()
         }
-        ivEditExpenseAttachment.setOnClickListener {
+        ivEditIncomeAttachment.setOnClickListener {
             openFileBottomSheet()
         }
 
-        tvExpenseDate.setOnClickListener {
+        tvIncomeDate.setOnClickListener {
             showDateDialog()
         }
         btnContinue.setOnClickListener {
@@ -95,40 +95,6 @@ class ExpenseFragment : BaseFragment<FragmentExpenseBinding, TransactionViewMode
         }
 
 
-    }
-
-    private fun showDateDialog() {
-        val myCalendar = Calendar.getInstance()
-        val datePickerDialog = DatePickerDialog(
-            requireContext(),
-            R.style.datepicker,
-            { view: DatePicker?, year: Int, month: Int, dayOfMonth: Int ->
-                myCalendar.set(Calendar.YEAR, year)
-                myCalendar.set(Calendar.MONTH, month)
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                val myFormat = "dd-MM-yyyy"
-                val sdf = SimpleDateFormat(myFormat, Locale.US)
-
-                binding.tvExpenseDate.text = sdf.format(myCalendar.time)
-            },
-            myCalendar.get(Calendar.YEAR),
-            myCalendar.get(Calendar.MONTH),
-            myCalendar.get(Calendar.DAY_OF_MONTH)
-        )
-        //  datePickerDialog.datePicker.minDate = System.currentTimeMillis() - 1000
-        datePickerDialog.show()
-    }
-
-    private fun openCategoryDialog() {
-        selectTransactionTypeDialog(
-            requireContext(),
-            previousSelectedType,
-            object : DialogTransactionTypeCallback {
-                override fun selectedType(type: String, typeInt: Int, drawable: Drawable) {
-                    binding.tvExpenseCategory.text = type
-                    previousSelectedType = typeInt
-                }
-            })
     }
 
     private fun openFileBottomSheet() {
@@ -244,7 +210,7 @@ class ExpenseFragment : BaseFragment<FragmentExpenseBinding, TransactionViewMode
                 data?.extras?.let {
                     val thumbnail: Bitmap =
                         data.extras!!.get("data") as Bitmap // Bitmap from camera
-                    file = saveImageToInternalStorage(requireContext(), thumbnail)
+                    file = ImageUtils.saveImageToInternalStorage(requireContext(), thumbnail)
                     //uploadFile()
 
                     showFileInUi(thumbnail)
@@ -255,8 +221,8 @@ class ExpenseFragment : BaseFragment<FragmentExpenseBinding, TransactionViewMode
                     // Here we will get the select image URI.
                     val selectedPhotoUri = data.data
                     val thumbnail: Bitmap =
-                        getBitmapFromUri(requireContext(), selectedPhotoUri!!)
-                    file = saveImageToInternalStorage(requireContext(), thumbnail)
+                        ImageUtils.getBitmapFromUri(requireContext(), selectedPhotoUri!!)
+                    file = ImageUtils.saveImageToInternalStorage(requireContext(), thumbnail)
                     showFileInUi(thumbnail)
                     //uploadFile()
                     // viewModel.requestUploadPhoto(file)
@@ -267,10 +233,10 @@ class ExpenseFragment : BaseFragment<FragmentExpenseBinding, TransactionViewMode
 
     private fun showFileInUi(thumbnail: Bitmap) {
         binding.apply {
-            tvExpenseAddAttachment.isVisible = false
-            ivExpenseAttachment.isVisible = true
-            ivEditExpenseAttachment.isVisible = true
-            ivExpenseAttachment.load(thumbnail) {
+            tvIncomeAddAttachment.isVisible = false
+            ivIncomeAttachment.isVisible = true
+            ivEditIncomeAttachment.isVisible = true
+            ivIncomeAttachment.load(thumbnail) {
                 crossfade(true)
                 transformations(CircleCropTransformation())
             }
@@ -278,16 +244,47 @@ class ExpenseFragment : BaseFragment<FragmentExpenseBinding, TransactionViewMode
     }
 
 
+    private fun openCategoryDialog() {
+        Dialogs.selectTransactionTypeDialog(
+            requireContext(),
+            previousSelectedType,
+            object : DialogTransactionTypeCallback {
+                override fun selectedType(type: String, typeInt: Int, drawable: Drawable) {
+                    binding.tvIncomeCategory.text = type
+                    previousSelectedType = typeInt
+                }
+            })
+    }
+
+    private fun showDateDialog() {
+        val myCalendar = Calendar.getInstance()
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            R.style.datepicker,
+            { view: DatePicker?, year: Int, month: Int, dayOfMonth: Int ->
+                myCalendar.set(Calendar.YEAR, year)
+                myCalendar.set(Calendar.MONTH, month)
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                val myFormat = "dd-MM-yyyy"
+                val sdf = SimpleDateFormat(myFormat, Locale.US)
+
+                binding.tvIncomeDate.text = sdf.format(myCalendar.time)
+            },
+            myCalendar.get(Calendar.YEAR),
+            myCalendar.get(Calendar.MONTH),
+            myCalendar.get(Calendar.DAY_OF_MONTH)
+        )
+        //  datePickerDialog.datePicker.minDate = System.currentTimeMillis() - 1000
+        datePickerDialog.show()
+    }
+
+
+
 
     companion object {
         val TAG = this::class.toString()
-        fun getInstance() = ExpenseFragment()
+        fun getInstance() = IncomeFragment()
         private const val CAMERA = 1
         private const val GALLERY = 2
     }
-
-    override fun getViewBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?
-    )= FragmentExpenseBinding.inflate(inflater, container, false)
 }
