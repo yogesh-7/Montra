@@ -16,6 +16,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
@@ -26,6 +27,7 @@ import com.dev_yogesh.montra.R
 import com.dev_yogesh.montra.databinding.DialogBottomSheetAddFileBinding
 import com.dev_yogesh.montra.databinding.FragmentHomeBinding
 import com.dev_yogesh.montra.databinding.FragmentIncomeBinding
+import com.dev_yogesh.montra.model.Transaction
 import com.dev_yogesh.montra.ui.comon.BaseFragment
 import com.dev_yogesh.montra.ui.viewModel.TransactionViewModel
 import com.dev_yogesh.montra.utils.Dialogs
@@ -42,6 +44,8 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
 import dagger.hilt.android.AndroidEntryPoint
+import parseDouble
+import snack
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -52,6 +56,7 @@ class IncomeFragment : BaseFragment<FragmentIncomeBinding, TransactionViewModel>
     private var previousSelectedType = 7
 
     lateinit var file: File
+     var filePath =""
 
     override val viewModel: TransactionViewModel by activityViewModels()
 
@@ -90,11 +95,53 @@ class IncomeFragment : BaseFragment<FragmentIncomeBinding, TransactionViewModel>
         tvIncomeDate.setOnClickListener {
             showDateDialog()
         }
+
+
         btnContinue.setOnClickListener {
+            if(validateTransaction(getTransactionContent())){
+                viewModel.insertTransaction(getTransactionContent()).run {
+                    binding.root.snack(string = R.string.success_expense_saved)
+                    findNavController().popBackStack()
+                }
+            }
 
         }
 
 
+    }
+
+   private fun validateTransaction(transaction:Transaction):Boolean{
+
+
+       if(transaction.amount.toString().contentEquals("NaN")){
+           toast("Please enter the amount")
+           return false
+       }
+       if(transaction.amount<1){
+           toast("Please enter a valid amount")
+           return false
+       }
+       if(transaction.date.isBlank()){
+           toast("Please select a date")
+           return false
+       }
+        return true
+
+
+
+    }
+
+    private fun getTransactionContent(): Transaction = binding.let {
+        val title = it.tvIncomeCategory.text.toString()
+        val amount = parseDouble(it.etIncomeAmount.text.toString())
+        val transactionType = "Income".toString()
+        val tag = it.tvIncomeCategory.text.toString()
+
+        val receipt = filePath
+        val date = it.tvIncomeDate.text.toString()
+        val note = it.tvIncomeDescription.text.toString()
+
+        return Transaction(title, amount, transactionType, tag,receipt, date, note)
     }
 
     private fun openFileBottomSheet() {
@@ -214,6 +261,7 @@ class IncomeFragment : BaseFragment<FragmentIncomeBinding, TransactionViewModel>
                     //uploadFile()
 
                     showFileInUi(thumbnail)
+                    filePath= file.absolutePath
                     //viewModel.requestUploadPhoto(file)
                 }
             } else if (requestCode == GALLERY) {
@@ -224,6 +272,7 @@ class IncomeFragment : BaseFragment<FragmentIncomeBinding, TransactionViewModel>
                         ImageUtils.getBitmapFromUri(requireContext(), selectedPhotoUri!!)
                     file = ImageUtils.saveImageToInternalStorage(requireContext(), thumbnail)
                     showFileInUi(thumbnail)
+                    filePath= file.absolutePath
                     //uploadFile()
                     // viewModel.requestUploadPhoto(file)
                 }

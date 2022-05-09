@@ -13,13 +13,17 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.dev_yogesh.montra.R
 import com.dev_yogesh.montra.databinding.FragmentHomeBinding
+import com.dev_yogesh.montra.model.Transaction
 import com.dev_yogesh.montra.ui.MainActivity
 import com.dev_yogesh.montra.ui.comon.BaseFragment
 import com.dev_yogesh.montra.ui.viewModel.TransactionViewModel
 import com.dev_yogesh.montra.utils.Dialogs.selectMonthDialog
 import com.dev_yogesh.montra.utils.comon.DialogMonthCallback
 import com.dev_yogesh.montra.utils.getCurrentMonth
+import com.dev_yogesh.montra.utils.viewState.ViewState
 import dagger.hilt.android.AndroidEntryPoint
+import indianRupee
+import snack
 import java.util.*
 
 @AndroidEntryPoint
@@ -34,6 +38,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, TransactionViewModel>() {
         super.onViewCreated(view, savedInstanceState)
         setData()
         initListener()
+        observeTransaction()
     }
 
     private fun setData()= with(binding){
@@ -104,6 +109,41 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, TransactionViewModel>() {
             ivSpendFrequency.rotation=0F
         }
     }
+
+    private fun onTotalTransactionLoaded(transaction: List<Transaction>) = with(binding) {
+        val (totalIncome, totalExpense) = transaction.partition { it.transactionType == "Income" }
+        val income = totalIncome.sumOf { it.amount }
+        val expense = totalExpense.sumOf { it.amount }
+        tvIncome.text = indianRupee(income)
+        tvExpense.text = indianRupee(expense)
+        tvAccountBalance.text = indianRupee(income - expense)
+    }
+
+   /* private fun onTransactionLoaded(list: List<Transaction>) =
+        transactionAdapter.differ.submitList(list)*/
+
+    private fun observeTransaction() = lifecycleScope.launchWhenStarted {
+        viewModel.uiState.collect { uiState ->
+            when (uiState) {
+                is ViewState.Loading -> {
+                }
+                is ViewState.Success -> {
+                    //showAllViews()
+                    //onTransactionLoaded(uiState.transaction)
+                    onTotalTransactionLoaded(uiState.transaction)
+                }
+                is ViewState.Error -> {
+                    binding.root.snack(
+                        string = R.string.text_error
+                    )
+                }
+                is ViewState.Empty -> {
+                    //hideAllViews()
+                }
+            }
+        }
+    }
+
 
 
 

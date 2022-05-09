@@ -11,21 +11,21 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.dev_yogesh.montra.R
 import com.dev_yogesh.montra.databinding.DialogBottomSheetAddFileBinding
-import com.dev_yogesh.montra.databinding.FragmentBudgetBinding
 import com.dev_yogesh.montra.databinding.FragmentExpenseBinding
+import com.dev_yogesh.montra.model.Transaction
 import com.dev_yogesh.montra.ui.comon.BaseFragment
 import com.dev_yogesh.montra.ui.viewModel.TransactionViewModel
 import com.dev_yogesh.montra.utils.Dialogs.selectTransactionTypeDialog
@@ -43,6 +43,8 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
 import dagger.hilt.android.AndroidEntryPoint
+import parseDouble
+import snack
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -52,12 +54,11 @@ import java.util.*
 class ExpenseFragment : BaseFragment<FragmentExpenseBinding, TransactionViewModel>() {
 
 
-
     override val viewModel: TransactionViewModel by activityViewModels()
     private var previousSelectedType = 7
 
     lateinit var file: File
-
+    var filePath = ""
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -91,10 +92,55 @@ class ExpenseFragment : BaseFragment<FragmentExpenseBinding, TransactionViewMode
             showDateDialog()
         }
         btnContinue.setOnClickListener {
+           if (validateTransaction(getTransactionContent())) {
+                viewModel.insertTransaction(getTransactionContent()).run {
+                    binding.root.snack(string = R.string.success_expense_saved)
+                    findNavController().popBackStack()
+                }
+            }
 
+            /*viewModel.insertTransaction(getTransactionContent()).run {
+                binding.root.snack(string = R.string.success_expense_saved)
+                findNavController().popBackStack()
+            }*/
         }
+    }
 
 
+    private fun validateTransaction(transaction:Transaction):Boolean{
+
+        Log.i("Filter", "isBlanks ${transaction.amount}")
+        Log.i("Filter", "isBlanks ${(transaction.amount>0.0)}")
+        if(transaction.amount.toString().contentEquals("NaN")){
+            toast("Please enter the amount")
+            return false
+        }
+        if(transaction.amount<1){
+            toast("Please enter a valid amount")
+            return false
+        }
+        if(transaction.date.isBlank()){
+            toast("Please select a date")
+            return false
+        }
+        return true
+
+
+
+    }
+
+
+    private fun getTransactionContent(): Transaction = binding.let {
+        val title = it.tvExpenseCategory.text.toString()
+        val amount = parseDouble(it.etExpenseAmount.text.toString())
+        val transactionType = "Expense"
+        val tag = it.tvExpenseCategory.text.toString()
+
+        val receipt = filePath
+        val date = it.tvExpenseDate.text.toString()
+        val note = it.tvExpenseDescription.text.toString()
+
+        return Transaction(title, amount, transactionType, tag, receipt, date, note)
     }
 
     private fun showDateDialog() {
@@ -102,7 +148,7 @@ class ExpenseFragment : BaseFragment<FragmentExpenseBinding, TransactionViewMode
         val datePickerDialog = DatePickerDialog(
             requireContext(),
             R.style.datepicker,
-            { view: DatePicker?, year: Int, month: Int, dayOfMonth: Int ->
+            { _: DatePicker?, year: Int, month: Int, dayOfMonth: Int ->
                 myCalendar.set(Calendar.YEAR, year)
                 myCalendar.set(Calendar.MONTH, month)
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
@@ -248,6 +294,7 @@ class ExpenseFragment : BaseFragment<FragmentExpenseBinding, TransactionViewMode
                     //uploadFile()
 
                     showFileInUi(thumbnail)
+                    filePath = file.absolutePath
                     //viewModel.requestUploadPhoto(file)
                 }
             } else if (requestCode == GALLERY) {
@@ -258,6 +305,7 @@ class ExpenseFragment : BaseFragment<FragmentExpenseBinding, TransactionViewMode
                         getBitmapFromUri(requireContext(), selectedPhotoUri!!)
                     file = saveImageToInternalStorage(requireContext(), thumbnail)
                     showFileInUi(thumbnail)
+                    filePath = file.absolutePath
                     //uploadFile()
                     // viewModel.requestUploadPhoto(file)
                 }
@@ -278,7 +326,6 @@ class ExpenseFragment : BaseFragment<FragmentExpenseBinding, TransactionViewMode
     }
 
 
-
     companion object {
         val TAG = this::class.toString()
         fun getInstance() = ExpenseFragment()
@@ -289,5 +336,5 @@ class ExpenseFragment : BaseFragment<FragmentExpenseBinding, TransactionViewMode
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    )= FragmentExpenseBinding.inflate(inflater, container, false)
+    ) = FragmentExpenseBinding.inflate(inflater, container, false)
 }

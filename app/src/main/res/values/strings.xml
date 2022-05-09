@@ -69,5 +69,16 @@
     <string name="cancel">Cancel</string>
     <string name="go_to_settings_caps">GO TO SETTINGS</string>
 
+    <string name="success_expense_saved">Transaction saved successfully</string>
+    <string name="success_transaction_delete">Transaction deleted successfully!</string>
+
+    <!--  Share -->
+    <string name="success_transaction_export">Transaction exported successfully!</string>
+    <string name="failed_transaction_export">Transaction exported failed ☹️</string>
+    <string name="text_error">Transaction exported failed ☹️</string>
+    <string name="support_pending">Support for export on Android10+ is still in progress, kindly be patient and thanks for support!</string>
+    <string name="text_open">Open</string>
+
+
 
 </resources>

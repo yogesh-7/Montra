@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         viewModel
 
         navigationBottomBarSetup()
-       // observeThemeMode()
+        observeThemeMode()
 
     }
 
