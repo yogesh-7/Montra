@@ -32,6 +32,7 @@
     <string name="week">Week</string>
     <string name="month">Month</string>
     <string name="year">Year</string>
+    <string name="all">All</string>
     <string name="november">November</string>
     <string name="december">December</string>
     <string name="october">October</string>
@@ -54,7 +55,8 @@
     <string name="miscellaneous">Miscellaneous</string>
     <string name="entertainment">Entertainment</string>
     <string name="personal_spending">Personal Spending</string>
-    <string name="saving_amp_debtsinsurance"><![CDATA[Saving & Debt Insurance]]></string>
+  <!--  <string name="saving_amp_debtsinsurance"><![CDATA[Saving & Debt Insurance]]></string>-->
+    <string name="saving_amp_debtsinsurance">Saving &amp; Debt Insurance</string>
     <string name="healthcare">Healthcare</string>
     <string name="insurance">Insurance</string>
     <string name="utilities">Utilities</string>

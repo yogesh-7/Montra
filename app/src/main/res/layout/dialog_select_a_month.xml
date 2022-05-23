@@ -20,6 +20,7 @@
         />
 
 
+
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/month_chip_group"
         android:layout_width="match_parent"
@@ -31,12 +32,13 @@
         app:layout_constraintTop_toBottomOf="@+id/label_select_month"
         app:singleSelection="true">
 
+
+
         <com.google.android.material.chip.Chip
             android:id="@+id/january_chip"
             style="@style/monthChipsStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"
             android:text="@string/january" />
 
         <com.google.android.material.chip.Chip
@@ -116,5 +118,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/december" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/all_chip"
+            style="@style/monthChipsStyle"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:checked="true"
+            android:layout_height="wrap_content"
+            android:text="@string/all" />
+
     </com.google.android.material.chip.ChipGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>

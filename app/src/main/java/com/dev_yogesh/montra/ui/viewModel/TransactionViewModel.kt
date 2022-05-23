@@ -125,6 +125,11 @@ class TransactionViewModel @Inject constructor(
         _transactionFilter.value = "Overall"
     }
 
+    companion object{
+        const val EXPENSE ="Expense"
+        const val INCOME ="Income"
+    }
+
 
 
 }

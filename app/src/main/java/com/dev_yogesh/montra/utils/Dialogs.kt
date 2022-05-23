@@ -1,16 +1,20 @@
 package com.dev_yogesh.montra.utils
 
+import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.widget.DatePicker
 import com.dev_yogesh.montra.R
 import com.dev_yogesh.montra.databinding.DialogSelectAMonthBinding
 import com.dev_yogesh.montra.databinding.DialogSelectTransactionTypeBinding
 import com.dev_yogesh.montra.utils.comon.DialogMonthCallback
 import com.dev_yogesh.montra.utils.comon.DialogTransactionTypeCallback
+import java.text.SimpleDateFormat
+import java.util.*
 
 object Dialogs {
 
@@ -42,6 +46,7 @@ object Dialogs {
                 9 -> octoberChip.isChecked = true
                 10 -> novemberChip.isChecked = true
                 11 -> decemberChip.isChecked = true
+                12 -> allChip.isChecked = true
             }
             januaryChip.setOnClickListener {
                 callback.selectedMonth(januaryChip.text.toString(), 0)
@@ -89,6 +94,10 @@ object Dialogs {
             }
             decemberChip.setOnClickListener {
                 callback.selectedMonth(decemberChip.text.toString(), 11)
+                dialog.dismiss()
+            }
+            decemberChip.setOnClickListener {
+                callback.selectedMonth(decemberChip.text.toString(), 12)
                 dialog.dismiss()
             }
         }
@@ -165,4 +174,7 @@ object Dialogs {
         }
         dialog.show()
     }
+
+
+
 }

@@ -36,6 +36,13 @@
         <item name="android:textAlignment">center</item>
     </style>
 
+    <style name="monthAllChipsStyle" parent="@style/Widget.MaterialComponents.Chip.Choice">
+        <item name="android:textSize">12sp</item>
+        <item name="chipBackgroundColor">@color/month_chip_background_color</item>
+        <item name="android:textColor">@color/month_chip_text_color</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
 
     <style name="transactionTypeChipsStyle" parent="@style/Widget.MaterialComponents.Chip.Choice">
         <item name="android:textSize">16sp</item>

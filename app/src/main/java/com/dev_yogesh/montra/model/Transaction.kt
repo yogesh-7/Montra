@@ -23,6 +23,10 @@ data class Transaction(
     var date: String,
     @ColumnInfo(name = "note")
     var note: String,
+    @ColumnInfo(name = "month")
+    var month: String,
+    @ColumnInfo(name = "year")
+    var year: String,
     @ColumnInfo(name = "createdAt")
     var createdAt: Long =
         System.currentTimeMillis(),

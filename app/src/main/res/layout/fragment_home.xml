@@ -185,7 +185,7 @@
         app:layout_constraintEnd_toStartOf="@+id/glV4"
         app:layout_constraintStart_toStartOf="@+id/glV3"
         app:layout_constraintTop_toTopOf="@id/glH1"
-        tools:text="December" />
+        tools:text="All" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/cv_notification"
@@ -536,6 +536,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 tools:itemCount="9"
+                android:layout_marginTop="4dp"
                 tools:listitem="@layout/rv_item_recent_transaction"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"

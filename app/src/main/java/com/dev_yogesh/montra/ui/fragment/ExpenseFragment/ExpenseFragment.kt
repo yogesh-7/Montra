@@ -32,6 +32,9 @@ import com.dev_yogesh.montra.utils.Dialogs.selectTransactionTypeDialog
 import com.dev_yogesh.montra.utils.comon.DialogTransactionTypeCallback
 import com.dev_yogesh.montra.utils.comon.ImageUtils.getBitmapFromUri
 import com.dev_yogesh.montra.utils.comon.ImageUtils.saveImageToInternalStorage
+import com.dev_yogesh.montra.utils.getCurrentMonth
+import com.dev_yogesh.montra.utils.getCurrentYear
+import com.dev_yogesh.montra.utils.getSelectedMonthName
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.karumi.dexter.Dexter
@@ -59,7 +62,8 @@ class ExpenseFragment : BaseFragment<FragmentExpenseBinding, TransactionViewMode
 
     lateinit var file: File
     var filePath = ""
-
+    var selectedMonth = getCurrentMonth()
+    var selectedYear = getCurrentYear()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -109,14 +113,18 @@ class ExpenseFragment : BaseFragment<FragmentExpenseBinding, TransactionViewMode
 
     private fun validateTransaction(transaction:Transaction):Boolean{
 
-        Log.i("Filter", "isBlanks ${transaction.amount}")
-        Log.i("Filter", "isBlanks ${(transaction.amount>0.0)}")
+       // Log.i("Filter", "isBlanks ${transaction.amount}")
+      //  Log.i("Filter", "isBlanks ${(transaction.amount>0.0)}")
         if(transaction.amount.toString().contentEquals("NaN")){
             toast("Please enter the amount")
             return false
         }
         if(transaction.amount<1){
             toast("Please enter a valid amount")
+            return false
+        }
+        if(transaction.tag.isBlank()){
+            toast("Please select a category")
             return false
         }
         if(transaction.date.isBlank()){
@@ -140,7 +148,7 @@ class ExpenseFragment : BaseFragment<FragmentExpenseBinding, TransactionViewMode
         val date = it.tvExpenseDate.text.toString()
         val note = it.tvExpenseDescription.text.toString()
 
-        return Transaction(title, amount, transactionType, tag, receipt, date, note)
+        return Transaction(title, amount, transactionType, tag, receipt, date, note,selectedMonth,selectedYear)
     }
 
     private fun showDateDialog() {
@@ -155,12 +163,19 @@ class ExpenseFragment : BaseFragment<FragmentExpenseBinding, TransactionViewMode
                 val myFormat = "dd-MM-yyyy"
                 val sdf = SimpleDateFormat(myFormat, Locale.US)
 
+               // Log.i("Filter", "MONTH:: ${ month}")
+                //Log.i("Filter", "MONTH:::: ${getSelectedMonthName(month)}")
+                selectedMonth = getSelectedMonthName(month)
+                selectedYear = year.toString()
+                Log.i("Filter", "selectedYear:: ${ selectedYear}")
                 binding.tvExpenseDate.text = sdf.format(myCalendar.time)
             },
             myCalendar.get(Calendar.YEAR),
             myCalendar.get(Calendar.MONTH),
             myCalendar.get(Calendar.DAY_OF_MONTH)
         )
+        datePickerDialog.datePicker.maxDate = System.currentTimeMillis() - 1000
+        //Log.i("Filter", "MONTH:: ${ myCalendar.get(Calendar.MONTH)}")
         //  datePickerDialog.datePicker.minDate = System.currentTimeMillis() - 1000
         datePickerDialog.show()
     }

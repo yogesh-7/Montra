@@ -1,15 +1,20 @@
 package com.dev_yogesh.montra.utils.comon
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.ContextWrapper
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.net.Uri
+import com.dev_yogesh.montra.R
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStream
 import java.util.*
+
 
 object ImageUtils {
 
@@ -19,6 +24,37 @@ object ImageUtils {
         val stream = context.contentResolver?.openInputStream(imageUri)
         return BitmapFactory.decodeStream(stream)
     }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
+    fun getDrawableFromItem(type: String, context: Context): Drawable {
+        val drawable = if (type.contentEquals("Housing")) {
+            context.resources.getDrawable(R.drawable.housing, null)
+        } else if (type.contentEquals("Food")) {
+            context.resources.getDrawable(R.drawable.food, null)
+        } else if (type.contentEquals("Transportation")) {
+            context.resources.getDrawable(R.drawable.transportation, null)
+        } else if (type.contentEquals("Utilities")) {
+            context.resources.getDrawable(R.drawable.utilities, null)
+        } else if (type.contentEquals("Insurance")) {
+            context.resources.getDrawable(R.drawable.insurance, null)
+        } else if (type.contentEquals("Entertainment")) {
+            context.resources.getDrawable(R.drawable.entertainment, null)
+        } else if (type.contentEquals("Saving & Debt Insurance")) {
+            context.resources.getDrawable(R.drawable.saving_and_debt, null)
+        } else if (type.contentEquals("Personal Spending")) {
+            context.resources.getDrawable(R.drawable.personal_spending, null)
+        } else if (type.contentEquals("Miscellaneous")) {
+            context.resources.getDrawable(R.drawable.miscellaneous, null)
+        } else if (type.contentEquals("Healthcare")) {
+            context.resources.getDrawable(R.drawable.healthcare, null)
+        }else{
+            context.resources.getDrawable(R.drawable.ic_shopping_bag, null)
+        }
+
+        ///return (drawable as BitmapDrawable).bitmap
+        return drawable
+    }
+
 
 
     fun getFileFromUri(context: Context, imageUri: Uri): File {

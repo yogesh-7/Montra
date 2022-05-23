@@ -11,12 +11,10 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
@@ -25,7 +23,6 @@ import coil.load
 import coil.transform.CircleCropTransformation
 import com.dev_yogesh.montra.R
 import com.dev_yogesh.montra.databinding.DialogBottomSheetAddFileBinding
-import com.dev_yogesh.montra.databinding.FragmentHomeBinding
 import com.dev_yogesh.montra.databinding.FragmentIncomeBinding
 import com.dev_yogesh.montra.model.Transaction
 import com.dev_yogesh.montra.ui.comon.BaseFragment
@@ -33,6 +30,9 @@ import com.dev_yogesh.montra.ui.viewModel.TransactionViewModel
 import com.dev_yogesh.montra.utils.Dialogs
 import com.dev_yogesh.montra.utils.comon.DialogTransactionTypeCallback
 import com.dev_yogesh.montra.utils.comon.ImageUtils
+import com.dev_yogesh.montra.utils.getCurrentMonth
+import com.dev_yogesh.montra.utils.getCurrentYear
+import com.dev_yogesh.montra.utils.getSelectedMonthName
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.karumi.dexter.Dexter
@@ -56,14 +56,15 @@ class IncomeFragment : BaseFragment<FragmentIncomeBinding, TransactionViewModel>
     private var previousSelectedType = 7
 
     lateinit var file: File
-     var filePath =""
-
+    var filePath = ""
+    var selectedMonth = getCurrentMonth()
+    var selectedYear = getCurrentYear()
     override val viewModel: TransactionViewModel by activityViewModels()
 
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    )= FragmentIncomeBinding.inflate(inflater, container, false)
+    ) = FragmentIncomeBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -98,7 +99,7 @@ class IncomeFragment : BaseFragment<FragmentIncomeBinding, TransactionViewModel>
 
 
         btnContinue.setOnClickListener {
-            if(validateTransaction(getTransactionContent())){
+            if (validateTransaction(getTransactionContent())) {
                 viewModel.insertTransaction(getTransactionContent()).run {
                     binding.root.snack(string = R.string.success_expense_saved)
                     findNavController().popBackStack()
@@ -110,25 +111,24 @@ class IncomeFragment : BaseFragment<FragmentIncomeBinding, TransactionViewModel>
 
     }
 
-   private fun validateTransaction(transaction:Transaction):Boolean{
-
-
-       if(transaction.amount.toString().contentEquals("NaN")){
-           toast("Please enter the amount")
-           return false
-       }
-       if(transaction.amount<1){
-           toast("Please enter a valid amount")
-           return false
-       }
-       if(transaction.date.isBlank()){
-           toast("Please select a date")
-           return false
-       }
+    private fun validateTransaction(transaction: Transaction): Boolean {
+        if (transaction.amount.toString().contentEquals("NaN")) {
+            toast("Please enter the amount")
+            return false
+        }
+        if (transaction.amount < 1) {
+            toast("Please enter a valid amount")
+            return false
+        }
+        if (transaction.tag.isBlank()) {
+            toast("Please select a category")
+            return false
+        }
+        if (transaction.date.isBlank()) {
+            toast("Please select a date")
+            return false
+        }
         return true
-
-
-
     }
 
     private fun getTransactionContent(): Transaction = binding.let {
@@ -141,7 +141,17 @@ class IncomeFragment : BaseFragment<FragmentIncomeBinding, TransactionViewModel>
         val date = it.tvIncomeDate.text.toString()
         val note = it.tvIncomeDescription.text.toString()
 
-        return Transaction(title, amount, transactionType, tag,receipt, date, note)
+        return Transaction(
+            title,
+            amount,
+            transactionType,
+            tag,
+            receipt,
+            date,
+            note,
+            selectedMonth,
+            selectedYear
+        )
     }
 
     private fun openFileBottomSheet() {
@@ -261,7 +271,7 @@ class IncomeFragment : BaseFragment<FragmentIncomeBinding, TransactionViewModel>
                     //uploadFile()
 
                     showFileInUi(thumbnail)
-                    filePath= file.absolutePath
+                    filePath = file.absolutePath
                     //viewModel.requestUploadPhoto(file)
                 }
             } else if (requestCode == GALLERY) {
@@ -272,7 +282,7 @@ class IncomeFragment : BaseFragment<FragmentIncomeBinding, TransactionViewModel>
                         ImageUtils.getBitmapFromUri(requireContext(), selectedPhotoUri!!)
                     file = ImageUtils.saveImageToInternalStorage(requireContext(), thumbnail)
                     showFileInUi(thumbnail)
-                    filePath= file.absolutePath
+                    filePath = file.absolutePath
                     //uploadFile()
                     // viewModel.requestUploadPhoto(file)
                 }
@@ -310,24 +320,23 @@ class IncomeFragment : BaseFragment<FragmentIncomeBinding, TransactionViewModel>
         val datePickerDialog = DatePickerDialog(
             requireContext(),
             R.style.datepicker,
-            { view: DatePicker?, year: Int, month: Int, dayOfMonth: Int ->
+            { _: DatePicker?, year: Int, month: Int, dayOfMonth: Int ->
                 myCalendar.set(Calendar.YEAR, year)
                 myCalendar.set(Calendar.MONTH, month)
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
                 val myFormat = "dd-MM-yyyy"
                 val sdf = SimpleDateFormat(myFormat, Locale.US)
-
+                selectedMonth = getSelectedMonthName(month)
+                selectedYear = year.toString()
                 binding.tvIncomeDate.text = sdf.format(myCalendar.time)
             },
             myCalendar.get(Calendar.YEAR),
             myCalendar.get(Calendar.MONTH),
             myCalendar.get(Calendar.DAY_OF_MONTH)
         )
-        //  datePickerDialog.datePicker.minDate = System.currentTimeMillis() - 1000
+        datePickerDialog.datePicker.maxDate = System.currentTimeMillis() - 1000
         datePickerDialog.show()
     }
-
-
 
 
     companion object {
