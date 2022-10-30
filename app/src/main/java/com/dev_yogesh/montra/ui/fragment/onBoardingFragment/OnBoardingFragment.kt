@@ -8,7 +8,10 @@ import com.dev_yogesh.montra.R
 import com.dev_yogesh.montra.databinding.FragmentOnBoardingBinding
 import com.dev_yogesh.montra.model.adapter.OnBoarding
 import com.dev_yogesh.montra.ui.fragment.HomeFragment.HomeFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class OnBoardingFragment : Fragment() {
 
 

@@ -13,7 +13,7 @@
     <dimen name="default_icon_padding_extra_large">16dp</dimen>
 
     <dimen name="default_text_view_padding">8dp</dimen>
-
+    <dimen name="default_text_view_padding_large">12dp</dimen>
     <dimen name="default_card_view_stroke_width">1dp</dimen>
     <dimen name="default_card_view_radius_1">24dp</dimen>
     <dimen name="circle_card_view_radius">180dp</dimen>
@@ -38,5 +38,5 @@
 
     <dimen name="btn_height">48dp</dimen>
     <dimen name="depend_btn_corner_radius">24dp</dimen>
-
+    <dimen name="depend_tv_corner_radius">12dp</dimen>
 </resources>

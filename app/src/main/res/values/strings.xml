@@ -20,6 +20,7 @@
 
     <string name="spend_frequency">Spend Frequency</string>
     <string name="shopping">Shopping</string>
+    <string name="select_a_month">Select a Month :</string>
 
     <string name="transaction">Transaction</string>
     <string name="see_all">See All</string>
@@ -31,6 +32,55 @@
     <string name="week">Week</string>
     <string name="month">Month</string>
     <string name="year">Year</string>
+    <string name="all">All</string>
+    <string name="november">November</string>
+    <string name="december">December</string>
+    <string name="october">October</string>
+    <string name="august">August</string>
+    <string name="september">September</string>
+    <string name="july">July</string>
+    <string name="june">June</string>
+    <string name="may">May</string>
+    <string name="april">April</string>
+    <string name="march">March</string>
+    <string name="february">February</string>
+    <string name="january">January</string>
+    <string name="how_much">How much?</string>
+    <string name="_0">0</string>
+    <string name="category">Category</string>
+    <string name="when">When</string>
+    <string name="description">Description</string>
+    <string name="add_attachment">Add Attachment</string>
+    <string name="continue_">Continue</string>
+    <string name="miscellaneous">Miscellaneous</string>
+    <string name="entertainment">Entertainment</string>
+    <string name="personal_spending">Personal Spending</string>
+  <!--  <string name="saving_amp_debtsinsurance"><![CDATA[Saving & Debt Insurance]]></string>-->
+    <string name="saving_amp_debtsinsurance">Saving &amp; Debt Insurance</string>
+    <string name="healthcare">Healthcare</string>
+    <string name="insurance">Insurance</string>
+    <string name="utilities">Utilities</string>
+    <string name="transportation">Transportation</string>
+    <string name="food">Food</string>
+    <string name="housing">Housing</string>
+    <string name="document">Document</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+
+    <string name="permissions_required_for_this_feature_msg">It Looks like you have turned off permissions required for this feature. It can be enabled under Application Settings</string>
+    <string name="cancel">Cancel</string>
+    <string name="go_to_settings_caps">GO TO SETTINGS</string>
+
+    <string name="success_expense_saved">Transaction saved successfully</string>
+    <string name="success_transaction_delete">Transaction deleted successfully!</string>
+
+    <!--  Share -->
+    <string name="success_transaction_export">Transaction exported successfully!</string>
+    <string name="failed_transaction_export">Transaction exported failed ☹️</string>
+    <string name="text_error">Transaction exported failed ☹️</string>
+    <string name="support_pending">Support for export on Android10+ is still in progress, kindly be patient and thanks for support!</string>
+    <string name="text_open">Open</string>
+
 
 
 </resources>

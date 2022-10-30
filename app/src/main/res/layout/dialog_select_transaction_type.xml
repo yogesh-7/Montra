@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/label_select_month"
+        style="@style/regular_1Bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_text_view_padding"
+        android:text="@string/select_a_month"
+        android:textAlignment="textStart"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/month_chip_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:chipSpacing="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_select_month"
+        app:singleLine="false"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/housing_chip"
+            style="@style/transactionTypeChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/housing"
+            app:chipIcon="@drawable/housing"
+            app:chipIconEnabled="true"
+            app:iconStartPadding="4dp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/transportation_chip"
+            style="@style/transactionTypeChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/transportation"
+            app:chipIcon="@drawable/transportation"
+            app:chipIconEnabled="true"
+            app:iconStartPadding="4dp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/food_chip"
+            style="@style/transactionTypeChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/food"
+            app:chipIcon="@drawable/food"
+            app:chipIconEnabled="true"
+            app:iconStartPadding="4dp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/entertainment_chip"
+            style="@style/transactionTypeChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/entertainment"
+            app:chipIcon="@drawable/entertainment"
+            app:chipIconEnabled="true"
+            app:iconStartPadding="4dp" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/healthcare_chip"
+            style="@style/transactionTypeChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/healthcare"
+            app:chipIcon="@drawable/healthcare"
+            app:chipIconEnabled="true"
+            app:iconStartPadding="4dp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/utilities_chip"
+            style="@style/transactionTypeChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/utilities"
+            app:chipIcon="@drawable/utilities"
+            app:chipIconEnabled="true"
+            app:iconStartPadding="4dp" />
+
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/saving_amp_debtsinsurance_chip"
+            style="@style/transactionTypeChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/saving_amp_debtsinsurance"
+            app:chipIcon="@drawable/saving_and_debt"
+            app:chipIconEnabled="true"
+            app:iconStartPadding="4dp" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/personal_spending_chip"
+            style="@style/transactionTypeChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/personal_spending"
+            app:chipIcon="@drawable/personal_spending"
+            app:chipIconEnabled="true"
+            app:iconStartPadding="4dp" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/miscellaneous_chip"
+            style="@style/transactionTypeChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/miscellaneous"
+            app:chipIcon="@drawable/miscellaneous"
+            app:chipIconEnabled="true"
+            app:iconStartPadding="4dp" />
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/insurance_chip"
+            style="@style/transactionTypeChipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/insurance"
+            app:chipIcon="@drawable/insurance"
+            app:chipIconEnabled="true"
+            app:iconStartPadding="4dp" />
+
+
+    </com.google.android.material.chip.ChipGroup>
+</androidx.constraintlayout.widget.ConstraintLayout>

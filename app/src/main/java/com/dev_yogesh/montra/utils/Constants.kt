@@ -24,5 +24,11 @@ object Constants {
     const val transaction ="transaction"
     const val appName ="expenso_"
 
+    val monthName = arrayOf(
+        "January", "February", "March", "April", "May", "June", "July",
+        "August", "September", "October", "November",
+        "December","All"
+    )
+
 
 }

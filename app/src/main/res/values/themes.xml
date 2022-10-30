@@ -182,6 +182,40 @@
         <item name="android:maxLines">1</item>
     </style>
 
+    <style name="datepicker" parent="Theme.MaterialComponents.DayNight.Dialog">
+        <item name="colorPrimary">@color/violet_100</item>
+        <item name="colorPrimaryDark">@color/violet_60</item>
+        <item name="colorAccent">@color/violet_60</item>
+        <item name="android:windowBackground">@color/white</item>     <!--calendar background-->
+        <item name="android:colorControlActivated">@color/red_60</item> <!--selected day-->
+        <item name="android:textColorPrimary">@color/violet_80</item> <!--days of the month-->
+        <item name="android:textColorSecondary">@color/green_80</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/AppTheme.Alert.Button.Positive</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/AppTheme.Alert.Button.Negative</item>
+        <item name="android:buttonBarNeutralButtonStyle">@style/AppTheme.Alert.Button.Neutral</item>
+
+    </style>
+
+    <style name="AppTheme.Alert.Button.Positive" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">@color/green_100</item>
+    </style>
+
+    <style name="AppTheme.Alert.Button.Negative" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">@color/red_40</item>
+    </style>
+
+    <style name="AppTheme.Alert.Button.Neutral" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">@color/violet_100</item>
+    </style>
+
+
+    <style name="CustomerBottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetStyleWrapper</item>
+    </style>
+
+    <style name="CustomBottomSheetStyleWrapper" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 
 
 
