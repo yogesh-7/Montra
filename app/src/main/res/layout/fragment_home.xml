@@ -535,18 +535,16 @@
                 android:id="@+id/rv_recent_transaction"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                tools:itemCount="9"
                 android:layout_marginTop="4dp"
-                tools:listitem="@layout/rv_item_recent_transaction"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/label_recent_transaction"
-                app:layout_constraintBottom_toBottomOf="parent"
-                />
-
-
-
+                app:layout_constraintVertical_bias="0.0"
+                tools:itemCount="9"
+                tools:listitem="@layout/rv_item_recent_transaction" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

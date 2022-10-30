@@ -1,5 +1,6 @@
 package com.dev_yogesh.montra.ui.fragment.HomeFragment
 
+import android.R.bool
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,8 +16,10 @@ import com.dev_yogesh.montra.model.Transaction
 import com.dev_yogesh.montra.ui.comon.BaseFragment
 import com.dev_yogesh.montra.ui.fragment.HomeFragment.adapter.RecentTransactionAdapter
 import com.dev_yogesh.montra.ui.viewModel.TransactionViewModel
+import com.dev_yogesh.montra.utils.Constants.Income
 import com.dev_yogesh.montra.utils.Dialogs.selectMonthDialog
 import com.dev_yogesh.montra.utils.comon.DialogMonthCallback
+import com.dev_yogesh.montra.utils.getCurrentDate
 import com.dev_yogesh.montra.utils.getCurrentMonth
 import com.dev_yogesh.montra.utils.getCurrentYear
 import com.dev_yogesh.montra.utils.viewState.ViewState
@@ -24,6 +27,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import indianRupee
 import snack
 import java.util.*
+
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding, TransactionViewModel>(),
@@ -44,11 +48,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, TransactionViewModel>(),
     private fun setData() = with(binding) {
         tvCurrentMonthSelected.text = getString(R.string.all)
         selectedMonth = 12
-        /* )
-         tvIncome.text = getString(R.string.rs_symbol).plus("5000")
-
-         tvExpense.text = getString(R.string.rs_symbol).plus("1200")
-         tvAccountBalance.text = getString(R.string.rs_symbol).plus("9400")*/
 
         lifecycleScope.launchWhenCreated {
             viewModel.transactionFilter.collect { filter ->
@@ -117,8 +116,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, TransactionViewModel>(),
             todayChip.isChecked= true
         }
 
-        choiceChipGroup.setOnCheckedChangeListener { group, checkedId ->
+        choiceChipGroup.setOnCheckedChangeListener { _, _ ->
             observeTransaction()
+        }
+
+        tvSeeAllTransaction.setOnClickListener {
+         findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToTransactionFragment())
+        }
+        rvRecentTransaction.apply {
+            adapter = mAdapter
         }
 
     }
@@ -133,51 +139,39 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, TransactionViewModel>(),
         }
     }
 
+    private fun setRecentTransactionList(transactions: List<Transaction>) = with(binding){
 
+        Log.i("Filter", "Transaction filter is ${(monthChip.isChecked)}")
+        when {
+            yearChip.isChecked -> {
+                setListAndCalculateData(filterRecentYearList(transactions))
+            }
+            monthChip.isChecked -> {
+                Log.i("Filter", "filterRecentMonthList::::\n ${(filterRecentMonthList(transactions))}")
+                setListAndCalculateData(filterRecentMonthList(transactions))
+            }
+            todayChip.isChecked -> {
+                Log.i("Filter", "filterRecentMonthList::::\n ${(filterRecentCurrentDayList(transactions))}")
+                setListAndCalculateData(filterRecentCurrentDayList(transactions))
+            }
+            else -> {
+                setListAndCalculateData(transactions)
+            }
+        }
+    }
 
-    private fun onTotalTransactionLoaded(transactions: List<Transaction>) = with(binding) {
-        Log.i("Filter", "transaction:: ${transactions}")
-        val (totalIncome, totalExpense) = transactions.partition { it.transactionType == "Income" }
+    private fun setListAndCalculateData(transactions: List<Transaction>) = with(binding){
+        Log.i("Filter", "transaction:: $transactions")
+        val (totalIncome, totalExpense) = transactions.partition { it.transactionType == Income }
         val income = totalIncome.sumOf { it.amount }
         val expense = totalExpense.sumOf { it.amount }
         tvIncome.text = indianRupee(income)
         tvExpense.text = indianRupee(expense)
         tvAccountBalance.text = indianRupee(income - expense)
-
-        setRecentTransactionList(transactions)
-        //mAdapter.submitList(transactions)
-
+        mAdapter.submitList(transactions)
     }
-    private fun setRecentTransactionList(transactions: List<Transaction>){
-
-        Log.i("Filter", "Transaction filter is ${(binding.monthChip.isChecked)}")
-        when {
-            binding.yearChip.isChecked -> {
-                mAdapter.submitList(filterRecentYearList(transactions))
-            }
-            binding.monthChip.isChecked -> {
-                Log.i("Filter", "filterRecentMonthList::::\n ${(filterRecentMonthList(transactions))}")
-                mAdapter.submitList(filterRecentMonthList(transactions))
-            }
-            else -> {
-                mAdapter.submitList(transactions)
-            }
 
 
-
-
-
-        }
-        binding.rvRecentTransaction.apply {
-            adapter = mAdapter
-            //setHasFixedSize(true)
-        }
-
-
-        //
-
-
-    }
 
     private fun filterRecentMonthList(transaction: List<Transaction>): List<Transaction> {
         val transactionList: MutableList<Transaction> = mutableListOf()
@@ -189,6 +183,27 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, TransactionViewModel>(),
         return transactionList
     }
 
+    private fun filterRecentCurrentDayList(transaction: List<Transaction>): List<Transaction> {
+        val transactionList: MutableList<Transaction> = mutableListOf()
+        transaction.forEach {
+            if (it.date.contentEquals(getCurrentDate())) {
+                transactionList.add(it)
+            }
+        }
+        return transactionList
+    }
+
+    private fun filterRecentCurrentWeekList(transaction: List<Transaction>): List<Transaction> {
+        val transactionList: MutableList<Transaction> = mutableListOf()
+        transaction.forEach {
+            if (it.date.contentEquals(getCurrentDate())) {
+                transactionList.add(it)
+            }
+        }
+        return transactionList
+    }
+
+
     private fun filterRecentYearList(transaction: List<Transaction>): List<Transaction> {
         val transactionList: MutableList<Transaction> = mutableListOf()
         transaction.forEach {
@@ -198,11 +213,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, TransactionViewModel>(),
         }
         return transactionList
     }
-
-
-
-    /* private fun onTransactionLoaded(list: List<Transaction>) =
-         transactionAdapter.differ.submitList(list)*/
 
     private fun observeTransaction() = lifecycleScope.launchWhenStarted {
         viewModel.uiState.collect { uiState ->
@@ -214,7 +224,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, TransactionViewModel>(),
                     //onTransactionLoaded(uiState.transaction)
                     //filterList(uiState.transaction)
                     // onTotalTransactionLoaded(uiState.transaction)
-                    onTotalTransactionLoaded(filterList(uiState.transaction))
+                    setRecentTransactionList(filterList(uiState.transaction))
                 }
                 is ViewState.Error -> {
                     binding.root.snack(
@@ -248,8 +258,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, TransactionViewModel>(),
     companion object {
         val TAG = this::class.toString()
         fun getInstance() = HomeFragment()
-        //const val EXPENSE ="Expense"
-        //const val INCOME ="Income"
 
     }
 
