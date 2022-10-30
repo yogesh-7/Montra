@@ -95,10 +95,15 @@ class MainActivity : AppCompatActivity() {
                     hideBottomNav(false)
                 }
                 R.id.homeFragment,
+                R.id.expenseFragment,
+                R.id.transactionFragment,
+                R.id.profileFragment,
+                R.id.budgetFragment,
                 -> {
                     bottomNavigationView.isVisible = true
                     hideBottomNav(true)
                 }
+
                 else -> {
                     hideBottomNav(false)
                 }

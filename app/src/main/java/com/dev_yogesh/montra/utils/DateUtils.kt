@@ -1,8 +1,16 @@
 package com.dev_yogesh.montra.utils
 
+import android.annotation.SuppressLint
+import android.util.Log
+import com.dev_yogesh.montra.utils.Constants.DATE_FORMAT
 import com.dev_yogesh.montra.utils.Constants.monthName
+import java.text.DateFormat
+import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Date
+import java.util.GregorianCalendar
+import java.util.Locale
 
 
 fun getCurrentMonth(): String {
@@ -14,16 +22,55 @@ fun getCurrentYear(): String {
 }
 
 fun getCurrentDate(): String {
-    return (SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())).format(Calendar.getInstance().time)
+    return (SimpleDateFormat(DATE_FORMAT, Locale.getDefault())).format(Calendar.getInstance().time)
 }
-
 
 
 fun getSelectedMonthName(int: Int): String {
     return monthName[int]
 }
 
+fun getCurrentWeekStartEndDate(startDateReturn :Boolean):String {
+    val c = GregorianCalendar.getInstance()
+    c[Calendar.DAY_OF_WEEK] = Calendar.SUNDAY
 
+    val df: DateFormat = SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
+
+    c.add(Calendar.DATE, -3)
+    val startDate = df.format(c.time)
+    c.add(Calendar.DATE, +6)
+    val endDate = df.format(c.time)
+    Log.i("date", "startDate:::: $startDate")
+    Log.i("date", "endDate:::: $endDate")
+
+    return if(startDateReturn){
+        startDate
+    }else{
+        endDate
+    }
+}
+
+@SuppressLint("SimpleDateFormat")
+fun isThisIsInCurrentWeek(transactionDate :String):Boolean {
+    val c = GregorianCalendar.getInstance()
+    c[Calendar.DAY_OF_WEEK] = Calendar.SUNDAY
+
+    val df: DateFormat = SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
+
+    c.add(Calendar.DATE, -3)
+    val startDate = df.format(c.time)
+    c.add(Calendar.DATE, +6)
+    val endDate = df.format(c.time)
+    Log.i("date", "startDate:::: $startDate")
+    Log.i("date", "endDate:::: $endDate")
+    Log.i("date", "transactionDate:::: $transactionDate")
+    val format = SimpleDateFormat(DATE_FORMAT)
+    val transactionDateObj: Date = format.parse(transactionDate)!!
+    val startDateObj: Date = format.parse(startDate)!!
+    val endDateObj: Date = format.parse(endDate)!!
+    Log.i("date", "value:::: ${startDateObj<transactionDateObj && transactionDateObj <endDateObj}")
+    return startDateObj<transactionDateObj && transactionDateObj <endDateObj
+}
 
 
 fun getCurrentMonthInInt(currentSelectedMonth: String): String {

@@ -23,6 +23,7 @@
     <string name="select_a_month">Select a Month :</string>
 
     <string name="transaction">Transaction</string>
+    <string name="transactions">Transactions</string>
     <string name="see_all">See All</string>
     <string name="recent_transaction">Recent Transaction</string>
     <string name="home">Home</string>

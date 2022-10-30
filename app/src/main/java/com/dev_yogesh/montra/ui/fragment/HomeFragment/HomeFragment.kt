@@ -21,7 +21,9 @@ import com.dev_yogesh.montra.utils.Dialogs.selectMonthDialog
 import com.dev_yogesh.montra.utils.comon.DialogMonthCallback
 import com.dev_yogesh.montra.utils.getCurrentDate
 import com.dev_yogesh.montra.utils.getCurrentMonth
+import com.dev_yogesh.montra.utils.getCurrentWeekStartEndDate
 import com.dev_yogesh.montra.utils.getCurrentYear
+import com.dev_yogesh.montra.utils.isThisIsInCurrentWeek
 import com.dev_yogesh.montra.utils.viewState.ViewState
 import dagger.hilt.android.AndroidEntryPoint
 import indianRupee
@@ -91,6 +93,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, TransactionViewModel>(),
                 override fun selectedMonth(month: String, monthInt: Int) {
                     tvCurrentMonthSelected.text = month
                     selectedMonth = monthInt
+                    if(  selectedMonth ==12 ){
+                        yearChip.isChecked= true
+                    }else{
+                        monthChip.isChecked = true
+                    }
                     observeTransaction()
                 }
             })
@@ -105,6 +112,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, TransactionViewModel>(),
 
         yearChip.setOnClickListener {
             yearChip.isChecked= true
+
         }
         monthChip.setOnClickListener {
             monthChip.isChecked= true
@@ -145,6 +153,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, TransactionViewModel>(),
         when {
             yearChip.isChecked -> {
                 setListAndCalculateData(filterRecentYearList(transactions))
+                tvCurrentMonthSelected.text = "All"
+                selectedMonth = 12
             }
             monthChip.isChecked -> {
                 Log.i("Filter", "filterRecentMonthList::::\n ${(filterRecentMonthList(transactions))}")
@@ -153,6 +163,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, TransactionViewModel>(),
             todayChip.isChecked -> {
                 Log.i("Filter", "filterRecentMonthList::::\n ${(filterRecentCurrentDayList(transactions))}")
                 setListAndCalculateData(filterRecentCurrentDayList(transactions))
+            }
+            weekChip.isChecked -> {
+                setListAndCalculateData(filterRecentCurrentWeekList(transactions))
             }
             else -> {
                 setListAndCalculateData(transactions)
@@ -196,11 +209,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, TransactionViewModel>(),
     private fun filterRecentCurrentWeekList(transaction: List<Transaction>): List<Transaction> {
         val transactionList: MutableList<Transaction> = mutableListOf()
         transaction.forEach {
-            if (it.date.contentEquals(getCurrentDate())) {
+            if (isThisIsInCurrentWeek(it.date)) {
                 transactionList.add(it)
             }
         }
         return transactionList
+    }
+
+    fun isBetween(input: Date, date1: Date, date2: Date): Boolean? {
+        return input > date1 && input < date2
     }
 
 

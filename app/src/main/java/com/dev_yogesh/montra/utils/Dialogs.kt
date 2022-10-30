@@ -96,10 +96,11 @@ object Dialogs {
                 callback.selectedMonth(decemberChip.text.toString(), 11)
                 dialog.dismiss()
             }
-            decemberChip.setOnClickListener {
-                callback.selectedMonth(decemberChip.text.toString(), 12)
+            allChip.setOnClickListener {
+                callback.selectedMonth(allChip.text.toString(), 12)
                 dialog.dismiss()
             }
+
         }
         dialog.show()
     }

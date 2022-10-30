@@ -2,26 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/home"
+        android:id="@+id/homeFragment"
         android:icon="@drawable/ic_home"
         android:title="@string/home" />
 
     <item
-        android:id="@+id/transaction"
+        android:id="@+id/transactionFragment"
         android:icon="@drawable/ic_transaction_2"
-        android:title="@string/transaction" />
+        android:title="@string/transactions" />
 
     <item
         android:id="@+id/placeholder"
         android:title="" />
 
     <item
-        android:id="@+id/budget"
+        android:id="@+id/budgetFragment"
         android:icon="@drawable/ic_pie_chart"
         android:title="@string/budget" />
 
     <item
-        android:id="@+id/profile"
+        android:id="@+id/profileFragment"
         android:icon="@drawable/ic_user"
         android:title="@string/profile" />
 
